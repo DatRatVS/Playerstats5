@@ -1,5 +1,6 @@
 package datratvs.playerstats5.commands;
 
+import datratvs.playerstats5.PlayerstatsMain;
 import github.scarsz.discordsrv.DiscordSRV;
 import github.scarsz.discordsrv.util.WebhookUtil;
 import org.bukkit.Bukkit;
@@ -9,8 +10,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import static sun.font.FontUtilities.getLogger;
 
 public class Coords implements CommandExecutor {
 
@@ -35,7 +34,7 @@ public class Coords implements CommandExecutor {
 				if (isDiscordSRVLoaded) {
 					WebhookUtil.deliverMessage(DiscordSRV.getPlugin().getMainTextChannel(), player, "x: " + loc.getBlockX() + " y: " + loc.getBlockY() + " z: " + loc.getBlockZ());
 				} else {
-					getLogger().info("DiscordSRV isn't loaded, continuing without WebhookUtil.");
+					PlayerstatsMain.getInstance().getLogger().info("DiscordSRV isn't loaded, continuing without WebhookUtil.");
 				}
 
 			} else {
@@ -45,7 +44,7 @@ public class Coords implements CommandExecutor {
 				if (isDiscordSRVLoaded) {
 					WebhookUtil.deliverMessage(DiscordSRV.getPlugin().getMainTextChannel(), player, "\"" + String.join(" ", args) + "\" = x: " + loc.getBlockX() + " y: " + loc.getBlockY() + " z: " + loc.getBlockZ());
 				} else {
-					getLogger().info("DiscordSRV isn't loaded, continuing without WebhookUtil.");
+					PlayerstatsMain.getInstance().getLogger().info("DiscordSRV isn't loaded, continuing without WebhookUtil.");
 				}
 			}
 

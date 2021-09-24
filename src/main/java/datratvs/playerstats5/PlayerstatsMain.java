@@ -9,8 +9,16 @@ import java.util.Objects;
 
 public final class PlayerstatsMain extends JavaPlugin {
 
+	public static PlayerstatsMain instance;
+
+	public static PlayerstatsMain getInstance() {
+		return instance;
+	}
+
 	@Override
 	public void onEnable() {
+
+		instance = this;
 
 		getLogger().info("[PS5] - Bota a chaproca pra correr que tu vai ver uns stats agora nessa merda filho da puta");
 
