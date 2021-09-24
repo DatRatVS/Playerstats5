@@ -1,7 +1,7 @@
 package datratvs.playerstats5.commands;
 
 import github.scarsz.discordsrv.DiscordSRV;
-import github.scarsz.discordsrv.dependencies.jda.api.entities.TextChannel;
+import github.scarsz.discordsrv.util.WebhookUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -39,6 +39,7 @@ public class Coords implements CommandExecutor {
 			Bukkit.broadcastMessage(ChatColor.GOLD + "Z: " + loc.getBlockZ());
 			Bukkit.broadcastMessage("");
 
+			WebhookUtil.deliverMessage(DiscordSRV.getPlugin().getMainTextChannel(), player, "/coords returned = x: " + loc.getBlockX() + " y: " + loc.getBlockY() + " z: " + loc.getBlockZ());
 			return true;
 		}
 		return false;
