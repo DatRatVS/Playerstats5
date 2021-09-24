@@ -10,7 +10,11 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import static sun.font.FontUtilities.getLogger;
+
 public class Coords implements CommandExecutor {
+
+	public boolean isDiscordSRVLoaded = Bukkit.getPluginManager().isPluginEnabled("DiscordSRV");
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
@@ -26,20 +30,29 @@ public class Coords implements CommandExecutor {
 
 			if (args.length == 0) {
 				Bukkit.broadcastMessage("");
-				Bukkit.broadcastMessage(ChatColor.GOLD + player.getName() + " shared his coordinates:");
+				Bukkit.broadcastMessage(ChatColor.GOLD + player.getName() + " shared them coordinates:");
 
+				if (isDiscordSRVLoaded) {
+					WebhookUtil.deliverMessage(DiscordSRV.getPlugin().getMainTextChannel(), player, "x: " + loc.getBlockX() + " y: " + loc.getBlockY() + " z: " + loc.getBlockZ());
+				} else {
+					getLogger().info("DiscordSRV isn't loaded, continuing without WebhookUtil.");
+				}
 
 			} else {
 				Bukkit.broadcastMessage("");
-				Bukkit.broadcastMessage(ChatColor.GOLD + player.getName() + " shared his coordinates saying \"" + String.join(" ", args) + "\":");
+				Bukkit.broadcastMessage(ChatColor.GOLD + player.getName() + " shared them coordinates saying \"" + String.join(" ", args) + "\":");
+
+				if (isDiscordSRVLoaded) {
+					WebhookUtil.deliverMessage(DiscordSRV.getPlugin().getMainTextChannel(), player, "\"" + String.join(" ", args) + "\" = x: " + loc.getBlockX() + " y: " + loc.getBlockY() + " z: " + loc.getBlockZ());
+				} else {
+					getLogger().info("DiscordSRV isn't loaded, continuing without WebhookUtil.");
+				}
 			}
 
 			Bukkit.broadcastMessage(ChatColor.GOLD + "X: " + loc.getBlockX());
 			Bukkit.broadcastMessage(ChatColor.GOLD + "Y: " + loc.getBlockY());
 			Bukkit.broadcastMessage(ChatColor.GOLD + "Z: " + loc.getBlockZ());
 			Bukkit.broadcastMessage("");
-
-			WebhookUtil.deliverMessage(DiscordSRV.getPlugin().getMainTextChannel(), player, "/coords returned = x: " + loc.getBlockX() + " y: " + loc.getBlockY() + " z: " + loc.getBlockZ());
 			return true;
 		}
 		return false;

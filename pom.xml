@@ -6,7 +6,7 @@
 
     <groupId>datratvs</groupId>
     <artifactId>playerstats5</artifactId>
-    <version>pre1-1.5 (1.16x)</version>
+    <version>pre2-1.5 (1.16x)</version>
     <packaging>jar</packaging>
 
     <name>Playerstats5</name>
