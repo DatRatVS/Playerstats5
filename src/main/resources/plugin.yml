@@ -1,0 +1,16 @@
+name: Playerstats5
+version: ${project.version}
+main: datratvs.playerstats5.PlayerstatsMain
+api-version: 1.17
+authors: [ DatRat ]
+description: Showing stats since jun/12/2021
+softdepend:
+  - DiscordSRV
+
+commands:
+  ps:
+    description: Shows the stats for that given player.
+  coords:
+    description: Shares your coordinates for everyone in chat.
+  ping:
+    description: Prints a player's ping.
