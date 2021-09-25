@@ -3,6 +3,10 @@ package datratvs.playerstats5.commands;
 import datratvs.playerstats5.PlayerstatsMain;
 import github.scarsz.discordsrv.DiscordSRV;
 import github.scarsz.discordsrv.util.WebhookUtil;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.chat.hover.content.Text;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -26,6 +30,16 @@ public class Coords implements CommandExecutor {
 
 			Player player = (Player) sender;
 			Location loc = player.getLocation();
+
+			// TEST AREA
+
+			TextComponent hyperlink = new TextComponent("Send Tpa");
+			hyperlink.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/tpa " + player.getName()));
+			hyperlink.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("Send a teleport request to " + player.getName() + "!")));
+			hyperlink.setColor(net.md_5.bungee.api.ChatColor.GOLD);
+			hyperlink.setBold(true);
+
+			// TEST AREA
 
 			if (args.length == 0) {
 				Bukkit.broadcastMessage("");
@@ -51,7 +65,18 @@ public class Coords implements CommandExecutor {
 			Bukkit.broadcastMessage(ChatColor.GOLD + "X: " + loc.getBlockX());
 			Bukkit.broadcastMessage(ChatColor.GOLD + "Y: " + loc.getBlockY());
 			Bukkit.broadcastMessage(ChatColor.GOLD + "Z: " + loc.getBlockZ());
+
+			// TEST AREA
+
+			for(Player playerHyperlink: Bukkit.getOnlinePlayers()){
+				playerHyperlink.spigot().sendMessage(hyperlink);
+			}
+
 			Bukkit.broadcastMessage("");
+
+			// TEST AREA
+
+
 			return true;
 		}
 		return false;
